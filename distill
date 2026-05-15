@@ -1,0 +1,59 @@
+#!/bin/bash
+#
+# distill — 哲学家知识蒸馏语料构建触发器
+# 用法: ./distill <哲学家名字> [zh|en|bilingual] [pretrain|sft|kd]
+#
+# 示例:
+#   ./distill 尼采
+#   ./distill Nietzsche en sft
+#   ./distill 庄子 zh pretrain
+#
+
+PHILOSOPHER="${1:-}"
+LANGUAGE="${2:-zh}"
+TARGET="${3:-sft}"
+
+if [ -z "$PHILOSOPHER" ]; then
+  echo "❌ 缺少哲学家名字"
+  echo ""
+  echo "用法: ./distill <哲学家名字> [语言] [蒸馏目标]"
+  echo ""
+  echo "参数:"
+  echo "  哲学家名字  — 必需，如 '尼采'、'庄子'、'Nietzsche'、'Hegel'"
+  echo "  语言        — 可选，zh(默认) / en / bilingual"
+  echo "  蒸馏目标    — 可选，pretrain / sft(默认) / kd"
+  echo ""
+  echo "示例:"
+  echo "  ./distill 尼采"
+  echo "  ./distill Nietzsche en sft"
+  echo "  ./distill 庄子 zh pretrain"
+  echo ""
+  echo "支持哲学家:"
+  echo "  尼采(Nietzsche)、黑格尔(Hegel)、庄子(Zhuangzi)、老子(Laozi)、"
+  echo "  康德(Kant)、海德格尔(Heidegger)、福柯(Foucault)、维特根斯坦(Wittgenstein)"
+  exit 1
+fi
+
+echo ""
+echo "╔════════════════════════════════════════════════════════════════╗"
+echo "║           🧠 哲学家知识蒸馏 — Philosopher Distiller            ║"
+echo "╠════════════════════════════════════════════════════════════════╣"
+printf  "║  哲学家: %-40s              ║\n" "$PHILOSOPHER"
+printf  "║  语言:   %-40s              ║\n" "$LANGUAGE"
+printf  "║  目标:   %-40s              ║\n" "$TARGET"
+echo "╚════════════════════════════════════════════════════════════════╝"
+echo ""
+echo "📋 工作流: Phase 1 → 2 → 3 → 3.5 → 4 → 5"
+echo "   1. 数据源检索     — 一手原著 + 二手权威研究"
+echo "   2. 自动抓取       — 多策略文本获取"
+echo "   3. 数据清洗       — 噪声去除 + 观点提取"
+echo "   3.5. 冲突检测     — 保留学术多元性"
+echo "   4. 蒸馏格式化     — Pretrain / SFT / KD"
+echo "   5. 质量验收       — 指标检查 + 报告"
+echo ""
+echo "⚡ 触发 AI Agent 执行..."
+echo ""
+echo "📝 你可以在对话中发送:"
+echo "   '/distill $PHILOSOPHER $LANGUAGE $TARGET'"
+echo "   或 '哲学家语料 $PHILOSOPHER'"
+echo ""
